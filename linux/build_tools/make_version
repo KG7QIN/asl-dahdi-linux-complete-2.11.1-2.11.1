@@ -17,6 +17,5 @@ elif [ -d ${1}/../.git ]; then
 else
 	# Use the directory information in the absence of any other version
 	# information
-#	pwd -P
-	echo ${1}
+	pwd -P
 fi
