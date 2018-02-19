@@ -1,0 +1,33 @@
+Setup asl-dahdi-linux-complete-2.11.1+2.11.1 for dkms build
+unpack source to /usr/src/asl-dahdi-linux-complete-2.11.1+2.11.1
+
+To create a dkms.conf from the installed kernel modules:
+dkms_helper reads the installed dkms modules. Yo will have to do a make install to build a dkms.conf  
+/usr/src/asl-dahdi-linux-complete-2.11.1+2.11.1/tools/build_tools/dkms-helper generate_conf > /usr/src/asl-dahdi-linux-complete-2.11.1+2.11.1/dkms.conf
+
+Add to the dkms database in /var/lib/dkms
+dkms add -m asl-dahdi-linux-complete -v 2.11.1+2.11.1
+
+Build it
+dkms build -m asl-dahdi-linux-complete -v 2.11.1+2.11.1
+
+Make a source module
+dkms mkdsc -m asl-dahdi-linux-complete -v 2.11.1+2.11.1 --source-only
+
+Make a .deb
+dkms mkdeb -m asl-dahdi-linux-complete -v 2.11.1+2.11.1 --source-only
+
+/var/lib/dkms/dahdi-linux-complete/deb contains asl-dahdi-linux-complete-dkms_2.11.1+2.11.1_all.deb
+
+You can install the .deb on the target machine
+dpkg-i asl-dahdi-linux-complete-dkms_2.11.1+2.11.1_all.deb
+apt-get install -f
+
+To remove:
+cd /usr/src/
+dkms remove -m asl-dahdi-linux-complete -v 2.11.1+2.11.1 --all
+
+Make sure /var/lib/dkms/asl-dahdi-linux-complete is gone
+
+
+Steve N4IRS
