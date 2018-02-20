@@ -12,6 +12,7 @@ install:
 ifeq ("$(wildcard $(NAME)-$(VERSION))", "$(NAME)-$(VERSION)")
 	install -d "$(SRC)"
 	cp -a $(NAME)-$(VERSION) $(SRC)
+	# https://ubuntuforums.org/showthread.php?t=2234906
 	# chmod 644 -R "$(SRC)/$(NAME)-$(VERSION)"
 endif
 
